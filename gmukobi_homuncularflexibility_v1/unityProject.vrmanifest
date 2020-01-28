@@ -1,0 +1,16 @@
+{
+  "source": "Unity",
+  "applications": [
+    {
+      "app_key": "application.generated.unity.gmukobi_homuncularflexibility_v1.exe",
+      "launch_type": "url",
+      "url": "steam://launch/",
+      "action_manifest_path": "C:\\Users\\Gabe\\Documents\\GitHub\\Homuncular-Flexibility-2019\\gmukobi_homuncularflexibility_v1\\Assets\\StreamingAssets\\SteamVR\\actions.json",
+      "strings": {
+        "en_us": {
+          "name": "gmukobi_homuncularflexibility_v1 [Testing]"
+        }
+      }
+    }
+  ]
+}
