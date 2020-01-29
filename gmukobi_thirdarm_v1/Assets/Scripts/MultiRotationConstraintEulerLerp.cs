@@ -11,30 +11,24 @@ public class MultiRotationConstraintEulerLerp : MonoBehaviour
     [Tooltip("Target for the euler-z rotation (leave None to not constrain z)")]
     public Transform zTarget;
 
-    public float xLerpFactor;
-    public float yLerpFactor;
-    public float zLerpFactor;
-
+    public float slerpFactor;
 
     Vector3 targetRotationEuler;
+    float velocity; // needed for Mathf.SmoothDampAngle
+
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         // get target rotations
         targetRotationEuler.x = xTarget ? xTarget.rotation.eulerAngles.x : 0;
         targetRotationEuler.y = yTarget ? yTarget.rotation.eulerAngles.y : 0;
         targetRotationEuler.z = zTarget ? zTarget.rotation.eulerAngles.z : 0;
 
-        // lerp each way
-        if (xTarget)
-            targetRotationEuler.x = Mathf.Lerp(transform.rotation.eulerAngles.x, targetRotationEuler.x, xLerpFactor);
-        if (yTarget)
-            targetRotationEuler.y = Mathf.Lerp(transform.rotation.eulerAngles.y, targetRotationEuler.y, yLerpFactor);
-        if (zTarget)
-            targetRotationEuler.z = Mathf.Lerp(transform.rotation.eulerAngles.z, targetRotationEuler.z, zLerpFactor);
+        // smoothly interpolate each component
+        Quaternion smoothed = Quaternion.Slerp(transform.rotation, Quaternion.Euler(targetRotationEuler), slerpFactor);
 
         // update my rotation
-        transform.rotation = Quaternion.Euler(targetRotationEuler);
+        transform.rotation = smoothed;
     }
 }

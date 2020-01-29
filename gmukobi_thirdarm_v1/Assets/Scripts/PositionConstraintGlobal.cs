@@ -8,7 +8,7 @@ public class PositionConstraintGlobal : MonoBehaviour
     public Vector3 offset;
 
     // Update is called once per frame
-    void FixedUpdate()
+    void LateUpdate()
     {
         transform.position = target.position + offset;
     }
