@@ -22,14 +22,17 @@ public class MultiRotationConstraintEulerLerp : MonoBehaviour
     void FixedUpdate()
     {
         // get target rotations
-        targetRotationEuler.x = xTarget ? xTarget.rotation.eulerAngles.x : transform.rotation.eulerAngles.x;
-        targetRotationEuler.y = yTarget ? yTarget.rotation.eulerAngles.y : transform.rotation.eulerAngles.y;
-        targetRotationEuler.z = zTarget ? zTarget.rotation.eulerAngles.z : transform.rotation.eulerAngles.z;
+        targetRotationEuler.x = xTarget ? xTarget.rotation.eulerAngles.x : 0;
+        targetRotationEuler.y = yTarget ? yTarget.rotation.eulerAngles.y : 0;
+        targetRotationEuler.z = zTarget ? zTarget.rotation.eulerAngles.z : 0;
 
         // lerp each way
-        targetRotationEuler.x = Mathf.Lerp(transform.rotation.eulerAngles.x, targetRotationEuler.x, xLerpFactor);
-        targetRotationEuler.y = Mathf.Lerp(transform.rotation.eulerAngles.y, targetRotationEuler.y, yLerpFactor);
-        targetRotationEuler.z = Mathf.Lerp(transform.rotation.eulerAngles.z, targetRotationEuler.z, zLerpFactor);
+        if (xTarget)
+            targetRotationEuler.x = Mathf.Lerp(transform.rotation.eulerAngles.x, targetRotationEuler.x, xLerpFactor);
+        if (yTarget)
+            targetRotationEuler.y = Mathf.Lerp(transform.rotation.eulerAngles.y, targetRotationEuler.y, yLerpFactor);
+        if (zTarget)
+            targetRotationEuler.z = Mathf.Lerp(transform.rotation.eulerAngles.z, targetRotationEuler.z, zLerpFactor);
 
         // update my rotation
         transform.rotation = Quaternion.Euler(targetRotationEuler);
