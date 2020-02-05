@@ -23,13 +23,14 @@ public class HandleThirdArmStateInput : MonoBehaviour
             thirdArm.SetThirdArmState(ThirdArmState.leftHandOnly);
 
         // handle cycle input via keyboard or controller
-        if (cycleThirdArmStateAction.GetStateDown(SteamVR_Input_Sources.Any) 
+        if (cycleThirdArmStateAction.GetStateDown(SteamVR_Input_Sources.Any)
             || Input.GetKeyDown(KeyCode.Space))
-            CycleThirdArmState();
+            thirdArm.ToggleThirdArmOnOrOff();
     }
 
     void CycleThirdArmState()
     {
+        // Cycles through all 4 states.
         int totalNumStates = System.Enum.GetNames(typeof(ThirdArmState)).Length;
         //Debug.Log($"totalNumStates: {totalNumStates}");
         int nextState = ((int)thirdArm.CurrentState + 1) % totalNumStates;
