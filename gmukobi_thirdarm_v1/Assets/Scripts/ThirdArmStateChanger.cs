@@ -5,14 +5,14 @@ using UnityEngine;
 public enum ThirdArmState
 {
     disabled,
-    followHmd,
+    // followHmd, // DEPRECATED for Tribeca lab tour project
     splitHands, // left hand heading, right hand pitch
-    leftHandOnly
+    // leftHandOnly // DEPRECATED for Tribeca lab tour project
 };
 
 public class ThirdArmStateChanger : MonoBehaviour
 {
-    public Transform hmd;
+    // public Transform hmd; // DEPRECATED for Tribeca lab tour project
     public Transform controllerLeft;
     public Transform controllerRight;
 
@@ -34,21 +34,21 @@ public class ThirdArmStateChanger : MonoBehaviour
             case ThirdArmState.disabled:
                 thirdArm.gameObject.SetActive(false);
                 break;
-            case ThirdArmState.followHmd:
-                thirdArm.gameObject.SetActive(true);
-                thirdArm.xTarget = hmd;
-                thirdArm.yTarget = hmd;
-                break;
+            //case ThirdArmState.followHmd:
+            //    thirdArm.gameObject.SetActive(true);
+            //    thirdArm.xTarget = hmd;
+            //    thirdArm.yTarget = hmd;
+            //    break; // DEPRECATED for Tribeca lab tour project
             case ThirdArmState.splitHands:
                 thirdArm.gameObject.SetActive(true);
                 thirdArm.xTarget = controllerRight;
                 thirdArm.yTarget = controllerLeft;
                 break;
-            case ThirdArmState.leftHandOnly:
-                thirdArm.gameObject.SetActive(true);
-                thirdArm.xTarget = controllerLeft;
-                thirdArm.yTarget = controllerLeft;
-                break;
+            //case ThirdArmState.leftHandOnly:
+            //    thirdArm.gameObject.SetActive(true);
+            //    thirdArm.xTarget = controllerLeft;
+            //    thirdArm.yTarget = controllerLeft;
+            //    break; // DEPRECATED for Tribeca lab tour project
         }
     }
 
