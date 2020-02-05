@@ -17,6 +17,7 @@ public class ThirdArmStateChanger : MonoBehaviour
     public Transform controllerLeft;
     public Transform controllerRight;
     public GameObject armModel;
+    [SerializeField] private Animator armArnimator;
 
     public UnityEvent OnThirdArmEnable;
     public UnityEvent OnThirdArmDisable;
@@ -25,10 +26,14 @@ public class ThirdArmStateChanger : MonoBehaviour
 
     private MultiRotationConstraintEulerLerp rotationConstraint;
 
+    private MeshRenderer armMeshRenderer;
+
     private void Start()
     {
         rotationConstraint = GetComponent<MultiRotationConstraintEulerLerp>();
         SetThirdArmState(ThirdArmState.disabled);
+
+        armMeshRenderer = armModel.GetComponent<MeshRenderer>();
     }
 
     public void SetThirdArmState(ThirdArmState state)
@@ -79,9 +84,15 @@ public class ThirdArmStateChanger : MonoBehaviour
 
     private IEnumerator GrowThirdArmCoroutine()
     {
-        // Tets the third arm to the splitHands state then grows it.
-        // TODO: grow that thing using an animation
+        // Sets the third arm to the splitHands state then grows it.
+
+        // don't render initially so it doesn't pop in for a frame the first time it grows
+        armMeshRenderer.enabled = false;  // TODO: find a better way to do this
+
         SetThirdArmState(ThirdArmState.splitHands);
+        armArnimator.Play("Grow Arm");
+        yield return null;
+        armMeshRenderer.enabled = true;
         yield return null;
     }
 
@@ -93,7 +104,15 @@ public class ThirdArmStateChanger : MonoBehaviour
     private IEnumerator ShrinkThirdArmCoroutine()
     {
         // Shrinks the third arm and sets it to the disabled state.
-        // TODO: shrink using an animation
+
+        //Debug.Log("Playing shrinking animation");
+        armArnimator.Play("Shrink Arm");
+        // wait for animation to finish
+        do
+        {
+            yield return null;
+        } while (armArnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f);
+        //Debug.Log("Done with shrinking animation");
         SetThirdArmState(ThirdArmState.disabled);
         yield return null;
     }

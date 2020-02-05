@@ -11,8 +11,10 @@ public class TouchableButton : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //Debug.Log($"Collided with layer {other.gameObject.layer}");
         if (((1 << other.gameObject.layer) & collisionLayerMask) != 0)
         {
+            //Debug.Log($"Layer matches collision mask!");
             OnButtonTouched.Invoke();
         }
     }
