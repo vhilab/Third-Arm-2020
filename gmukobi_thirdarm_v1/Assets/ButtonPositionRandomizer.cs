@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ButtonPositionRandomizer : MonoBehaviour
 {
-    [SerializeField] private Transform button;
+    [SerializeField] private Transform button = default;
     [Tooltip("X range to spawn in on either side of my transform.")]
-    [SerializeField] private float spawnRangeX;
+    [SerializeField] private float spawnRangeX = default;
     [Tooltip("Y range to spawn in on either side of my transform.")]
-    [SerializeField] private float spawnRangeY;
+    [SerializeField] private float spawnRangeY = default;
 
     private void Start()
     {

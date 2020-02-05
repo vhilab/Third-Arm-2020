@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Events;
 using UnityEngine;
 
 public enum ThirdArmState
@@ -15,14 +16,18 @@ public class ThirdArmStateChanger : MonoBehaviour
     // public Transform hmd; // DEPRECATED for Tribeca lab tour project
     public Transform controllerLeft;
     public Transform controllerRight;
+    public GameObject armModel;
+
+    public UnityEvent OnThirdArmEnable;
+    public UnityEvent OnThirdArmDisable;
 
     public ThirdArmState CurrentState { get; private set; }
 
-    private MultiRotationConstraintEulerLerp thirdArm;
+    private MultiRotationConstraintEulerLerp rotationConstraint;
 
     private void Start()
     {
-        thirdArm = GetComponent<MultiRotationConstraintEulerLerp>();
+        rotationConstraint = GetComponent<MultiRotationConstraintEulerLerp>();
         SetThirdArmState(ThirdArmState.disabled);
     }
 
@@ -32,7 +37,8 @@ public class ThirdArmStateChanger : MonoBehaviour
         switch (state)
         {
             case ThirdArmState.disabled:
-                thirdArm.gameObject.SetActive(false);
+                OnThirdArmDisable.Invoke();
+                armModel.SetActive(false);
                 break;
             //case ThirdArmState.followHmd:
             //    thirdArm.gameObject.SetActive(true);
@@ -40,9 +46,10 @@ public class ThirdArmStateChanger : MonoBehaviour
             //    thirdArm.yTarget = hmd;
             //    break; // DEPRECATED for Tribeca lab tour project
             case ThirdArmState.splitHands:
-                thirdArm.gameObject.SetActive(true);
-                thirdArm.xTarget = controllerRight;
-                thirdArm.yTarget = controllerLeft;
+                armModel.SetActive(true);
+                rotationConstraint.xTarget = controllerRight;
+                rotationConstraint.yTarget = controllerLeft;
+                OnThirdArmEnable.Invoke();
                 break;
             //case ThirdArmState.leftHandOnly:
             //    thirdArm.gameObject.SetActive(true);
@@ -80,7 +87,7 @@ public class ThirdArmStateChanger : MonoBehaviour
 
     public void ShrinkThirdArm()
     {
-        ShrinkThirdArmCoroutine();
+        StartCoroutine(ShrinkThirdArmCoroutine());
     }
 
     private IEnumerator ShrinkThirdArmCoroutine()
