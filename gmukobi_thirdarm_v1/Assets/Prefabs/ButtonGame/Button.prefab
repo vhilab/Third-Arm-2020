@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5031250249127775360}
   - component: {fileID: 5031250249127775363}
   - component: {fileID: 5031250249127775362}
+  - component: {fileID: 1668521497}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5031250249127776124}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children: []
@@ -92,3 +93,23 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1668521497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5031250249127776124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a092485a050bf04eade8cf08bcc5267, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  particlePrefab: {fileID: 5031250249127776124, guid: 704967c0a59edbe4bb97376d82122611,
+    type: 3}
+  OnButtonTouched:
+    m_PersistentCalls:
+      m_Calls: []
