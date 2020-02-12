@@ -38,6 +38,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5031250249127776124, guid: 704967c0a59edbe4bb97376d82122611,
         type: 3}
+    - target: {fileID: 1668521497, guid: 6015c85a18a90df4fa84692ba0a875d7, type: 3}
+      propertyPath: collisionTagFilter
+      value: 3rdArmCollider
+      objectReference: {fileID: 0}
     - target: {fileID: 5031250249127776124, guid: 6015c85a18a90df4fa84692ba0a875d7,
         type: 3}
       propertyPath: m_Name

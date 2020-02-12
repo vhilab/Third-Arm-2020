@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class TouchableButton : MonoBehaviour
 {
-    [SerializeField] private LayerMask collisionLayerMask = default;
+    [SerializeField] private string collisionTagFilter = default;
     [SerializeField] private GameObject particlePrefab = default;
 
     public UnityEvent OnButtonEntered;
@@ -31,7 +31,7 @@ public class TouchableButton : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //Debug.Log($"Collided with layer {other.gameObject.layer}");
-        if (((1 << other.gameObject.layer) & collisionLayerMask) != 0)
+        if (other.CompareTag(collisionTagFilter))
         {
             //Debug.Log($"Layer matches collision mask!");
             isBeingTouched = true;
@@ -43,7 +43,7 @@ public class TouchableButton : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         //Debug.Log($"Collided with layer {other.gameObject.layer}");
-        if (((1 << other.gameObject.layer) & collisionLayerMask) != 0)
+        if (other.CompareTag(collisionTagFilter))
         {
             isBeingTouched = false;
             OnButtonExited.Invoke();

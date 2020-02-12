@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AudioCuePlayerAtMyPosition : MonoBehaviour
 {
-    [SerializeField] private AudioCueScriptableObject audioCue;
+    [SerializeField] private AudioCueScriptableObject audioCue = default;
 
     public void PlayAtMyPosition()
     {
