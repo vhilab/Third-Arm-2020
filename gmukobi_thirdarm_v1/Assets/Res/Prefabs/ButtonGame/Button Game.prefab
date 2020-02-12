@@ -44,8 +44,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 6551306052860712330}
-  spawnRangeX: 0.7
-  spawnRangeY: 0.7
+  spawnRangeX: 1
+  spawnRangeY: 0.8
+  minNewSpawnDistance: 0.5
 --- !u!1 &1134534084932028891
 GameObject:
   m_ObjectHideFlags: 0
