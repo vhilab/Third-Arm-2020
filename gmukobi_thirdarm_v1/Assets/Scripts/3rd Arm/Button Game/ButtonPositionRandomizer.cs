@@ -9,13 +9,19 @@ public class ButtonPositionRandomizer : MonoBehaviour
     [SerializeField] private float spawnRangeX = default;
     [Tooltip("Y range to spawn in on either side of my transform.")]
     [SerializeField] private float spawnRangeY = default;
+    [SerializeField] private float minNewSpawnDistance = default;
 
-    private void Start()
+    public void RandomizeButtonPositionMinDistance()
     {
-        RandomizeButtonPosition();
+        Vector3 oldPosition = button.position;
+        for (int i = 0; i < 5; i++) // try several times then fail
+        {
+            RandomizeButtonPosition();
+            if (Vector3.Distance(button.position, oldPosition) >= minNewSpawnDistance) return;
+        }
     }
 
-    public void RandomizeButtonPosition()
+    private void RandomizeButtonPosition()
     {
         float xDisplacement = Random.Range(-spawnRangeX, spawnRangeX);
         float yDisplacement = Random.Range(-spawnRangeY, spawnRangeY);
