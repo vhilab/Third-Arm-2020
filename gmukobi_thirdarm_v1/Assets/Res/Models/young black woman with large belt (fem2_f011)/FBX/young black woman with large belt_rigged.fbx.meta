@@ -6,7 +6,22 @@ ModelImporter:
   - first:
       74: -203655887218126122
     second: mixamo.com
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: f011_body
+    second: {fileID: 2100000, guid: 0dbba528aacfd11449fd9817a70b2c41, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: f011_head
+    second: {fileID: 2100000, guid: d573dd7e74e2a2e4096bbae74abc5d3a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: f011_opacity
+    second: {fileID: 2100000, guid: 007bb35568cce554da64fc4e760e07a5, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
