@@ -48,8 +48,8 @@ public class ThirdArmStateChanger : MonoBehaviour
                 break;
             case ThirdArmState.leftUpRightTwist:
                 rotationConstraint.xTarget = controllerLeft;
-                rotationConstraint.yTarget = null;
-                rotationConstraint.yTargetButUseZRot = controllerRight;
+                rotationConstraint.yTarget = hmd;  // base y rotation
+                rotationConstraint.yTargetButUseZRot = controllerRight;  // twist rotation added to y
                 break;
         }
     }
