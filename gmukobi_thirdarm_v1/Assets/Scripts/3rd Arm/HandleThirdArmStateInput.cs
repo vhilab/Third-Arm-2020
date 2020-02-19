@@ -27,7 +27,7 @@ public class HandleThirdArmStateInput : MonoBehaviour
         #endregion
 
         // handle cycle input via keyboard or controller
-        if (acceptVRControllerInput && cycleThirdArmStateSteamVRAction.GetStateDown(SteamVR_Input_Sources.Any) // controller input
+        if ((acceptVRControllerInput && cycleThirdArmStateSteamVRAction.GetStateDown(SteamVR_Input_Sources.Any)) // controller input
             || Input.GetKeyDown(KeyCode.Space)) // keyboard input
             thirdArm.ToggleThirdArmOnOrOff();
     }
