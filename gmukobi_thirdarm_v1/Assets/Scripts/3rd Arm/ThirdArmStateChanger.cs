@@ -21,8 +21,6 @@ public class ThirdArmStateChanger : MonoBehaviour
     public UnityEvent OnThirdArmEnable;
     public UnityEvent OnThirdArmDisable;
 
-    private ThirdArmState CurrentState;
-
     private MultiRotationConstraintEulerLerp rotationConstraint;
     private MeshRenderer armMeshRenderer;
 
@@ -36,7 +34,6 @@ public class ThirdArmStateChanger : MonoBehaviour
 
     public void SetThirdArmState(ThirdArmState state)
     {
-        CurrentState = state;
         switch (state)
         {
             case ThirdArmState.followHmd:
@@ -46,7 +43,6 @@ public class ThirdArmStateChanger : MonoBehaviour
             case ThirdArmState.splitHands:
                 rotationConstraint.xTarget = controllerRight;
                 rotationConstraint.yTarget = controllerLeft;
-                OnThirdArmEnable.Invoke();
                 break;
             case ThirdArmState.leftUpRightTwist:
                 rotationConstraint.xTarget = controllerLeft;
@@ -58,7 +54,11 @@ public class ThirdArmStateChanger : MonoBehaviour
     private void SetArmModelActive(bool active)
     {
         armModel.SetActive(active);
-        if (active) { } else
+        if (active)
+        {
+            OnThirdArmEnable.Invoke();
+        } 
+        else
         {
             OnThirdArmDisable.Invoke();
         }
