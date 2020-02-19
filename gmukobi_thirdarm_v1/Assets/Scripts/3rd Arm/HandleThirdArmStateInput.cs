@@ -8,7 +8,9 @@ public class HandleThirdArmStateInput : MonoBehaviour
     [Tooltip("The third arm to control.")]
     public ThirdArmStateChanger thirdArm;
 
-    public SteamVR_Action_Boolean cycleThirdArmStateAction;
+    [Tooltip("Disable to only accept keyboard input (e.g. for lab demo).")]
+    [SerializeField] private bool acceptVRControllerInput = false;
+    public SteamVR_Action_Boolean cycleThirdArmStateSteamVRAction;
 
     private void Update()
     {
@@ -25,8 +27,8 @@ public class HandleThirdArmStateInput : MonoBehaviour
         #endregion
 
         // handle cycle input via keyboard or controller
-        if (cycleThirdArmStateAction.GetStateDown(SteamVR_Input_Sources.Any)
-            || Input.GetKeyDown(KeyCode.Space))
+        if (acceptVRControllerInput && cycleThirdArmStateSteamVRAction.GetStateDown(SteamVR_Input_Sources.Any) // controller input
+            || Input.GetKeyDown(KeyCode.Space)) // keyboard input
             thirdArm.ToggleThirdArmOnOrOff();
     }
 
