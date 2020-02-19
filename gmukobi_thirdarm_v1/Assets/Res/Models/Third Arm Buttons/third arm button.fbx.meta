@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: 717830f911472464ebfcd2bb66c9f592
+guid: 57bec92c143ebb24d8cb21cc600d3fb7
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: _PBR.001
-    second: {fileID: 2100000, guid: c182affa67bf62749a622dc854672c63, type: 2}
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
