@@ -21,7 +21,7 @@ public class ThirdArmStateChanger : MonoBehaviour
     public UnityEvent OnThirdArmEnable;
     public UnityEvent OnThirdArmDisable;
 
-    public ThirdArmState CurrentState { get; private set; }
+    private ThirdArmState CurrentState;
 
     private MultiRotationConstraintEulerLerp rotationConstraint;
     private MeshRenderer armMeshRenderer;

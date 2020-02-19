@@ -16,14 +16,12 @@ public class HandleThirdArmStateInput : MonoBehaviour
     {
         // handle 1-4 keyboard input // DEPRECATED for Tribeca lab tour project
         #region
-        //if (Input.GetKeyDown(KeyCode.Alpha1))
-        //    thirdArm.SetThirdArmState(ThirdArmState.disabled);
-        //if (Input.GetKeyDown(KeyCode.Alpha2)) 
-        //    thirdArm.SetThirdArmState(ThirdArmState.followHmd);
-        //if (Input.GetKeyDown(KeyCode.Alpha2))
-        //    thirdArm.SetThirdArmState(ThirdArmState.splitHands);
-        //if (Input.GetKeyDown(KeyCode.Alpha4))
-        //    thirdArm.SetThirdArmState(ThirdArmState.leftHandOnly); // DEPRECATED for Tribeca lab tour project
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+            thirdArm.SetThirdArmState(ThirdArmState.followHmd);
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+            thirdArm.SetThirdArmState(ThirdArmState.splitHands);
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+            thirdArm.SetThirdArmState(ThirdArmState.leftUpRightTwist);
         #endregion
 
         // handle cycle input via keyboard or controller
