@@ -20,7 +20,7 @@ public class HandleThirdArmStateInput : MonoBehaviour
             thirdArm.SetThirdArmState(ThirdArmState.followHmd);
         if (Input.GetKeyDown(KeyCode.Alpha2))
             thirdArm.SetThirdArmState(ThirdArmState.splitHands);
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha3))
             thirdArm.SetThirdArmState(ThirdArmState.leftUpRightTwist);
         #endregion
 
