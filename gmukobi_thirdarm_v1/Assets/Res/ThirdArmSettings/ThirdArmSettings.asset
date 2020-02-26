@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: ThirdArmSettings
   m_EditorClassIdentifier: Assembly-CSharp::ThirdArmSettingsScriptableObject
-  thirdArmBuildType: 0
+  thirdArmBuildType: 1
