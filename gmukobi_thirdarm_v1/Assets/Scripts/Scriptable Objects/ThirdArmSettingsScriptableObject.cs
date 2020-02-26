@@ -9,4 +9,5 @@ public enum ThirdArmBuildType
 public class ThirdArmSettingsScriptableObject : ScriptableObject
 {
     public ThirdArmBuildType thirdArmBuildType;
+    public float growAngleThresholdHMDEulerX;
 }

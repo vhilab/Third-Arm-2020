@@ -66,6 +66,12 @@ public class ThirdArmStateChanger : MonoBehaviour
         // toggles the arm between the disabled and enabled states using the below coroutines
         if (!armModel.activeSelf)
         {
+            if (ThirdArmSettingsReader.Instance.settings.thirdArmBuildType == ThirdArmBuildType.TribecaFilm &&
+                hmd.localEulerAngles.x < ThirdArmSettingsReader.Instance.settings.growAngleThresholdHMDEulerX)
+            {
+                // don't grow if not looking down 
+                return;
+            }
             GrowThirdArm();
         } 
         else  // shrink from any non-disabled state
