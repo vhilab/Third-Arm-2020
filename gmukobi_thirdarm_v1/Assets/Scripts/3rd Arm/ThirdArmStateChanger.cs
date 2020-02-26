@@ -39,10 +39,22 @@ public class ThirdArmStateChanger : MonoBehaviour
         armModel.SetActive(false);
         armMeshRenderer = armModel.GetComponent<MeshRenderer>();
         OnInitializeThirdArm.Invoke();
+
+        // use only splitHands state for Tribeca film
+        if (ThirdArmSettingsReader.Instance.settings.thirdArmBuildType == ThirdArmBuildType.TribecaFilm)
+        {
+            SetThirdArmState(ThirdArmState.splitHands);
+        }
     }
 
     public void SetThirdArmState(ThirdArmState state)
     {
+        // disable multiple state switching for Tribeca film
+        if (ThirdArmSettingsReader.Instance.settings.thirdArmBuildType == ThirdArmBuildType.TribecaFilm)
+        {
+            state = ThirdArmState.splitHands;
+        }
+
         switch (state)
         {
             case ThirdArmState.followHmd:
