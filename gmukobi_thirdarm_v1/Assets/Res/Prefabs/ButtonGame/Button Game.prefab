@@ -265,7 +265,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3993219604911048588}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.4, y: 1.2, z: 0.35}
+  m_LocalPosition: {x: -0.45, y: 1.2, z: 0.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1134534084932028890}
@@ -284,9 +284,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 6286169356601808407}
-  spawnRangeX: 0.3
+  spawnRangeX: 0.25
   spawnRangeY: 0.4
-  minNewSpawnDistance: 0.2
+  minNewSpawnDistance: 0.24
 --- !u!1 &4442809070225937291
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,7 +392,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6391690823995430371}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.4, y: 1.2, z: 0.35}
+  m_LocalPosition: {x: 0.45, y: 1.2, z: 0.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1134534084932028890}
@@ -411,9 +411,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 1988899164314344578}
-  spawnRangeX: 0.3
+  spawnRangeX: 0.25
   spawnRangeY: 0.4
-  minNewSpawnDistance: 0.2
+  minNewSpawnDistance: 0.24
 --- !u!1 &7057836931951572573
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,7 +476,7 @@ PrefabInstance:
     - target: {fileID: 5031250249127776125, guid: 6015c85a18a90df4fa84692ba0a875d7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.35
+      value: 0.55
       objectReference: {fileID: 0}
     - target: {fileID: 5031250249127776125, guid: 6015c85a18a90df4fa84692ba0a875d7,
         type: 3}
@@ -675,7 +675,7 @@ PrefabInstance:
     - target: {fileID: 5031250249127776125, guid: 6015c85a18a90df4fa84692ba0a875d7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.35
+      value: 0.55
       objectReference: {fileID: 0}
     - target: {fileID: 5031250249127776125, guid: 6015c85a18a90df4fa84692ba0a875d7,
         type: 3}
