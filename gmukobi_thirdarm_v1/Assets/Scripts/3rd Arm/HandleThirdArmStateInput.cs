@@ -12,9 +12,12 @@ public class HandleThirdArmStateInput : MonoBehaviour
     [SerializeField] private bool acceptVRControllerInput = false;
     public SteamVR_Action_Boolean cycleThirdArmStateSteamVRAction;
 
+    [SerializeField] private SwitchActiveGameObjects thirdArmModelSwitcher = default;
+    [SerializeField] private ToggleActive mirrorToggler = default;
+
     private void Update()
     {
-        // handle 1-4 keyboard input // DEPRECATED for Tribeca lab tour project
+        // handle 1-4 keyboard input // not for Tribeca lab tour project
         #region
         if (Input.GetKeyDown(KeyCode.Alpha1))
             thirdArm.SetThirdArmState(ThirdArmState.followHmd);
@@ -23,6 +26,14 @@ public class HandleThirdArmStateInput : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha3))
             thirdArm.SetThirdArmState(ThirdArmState.leftUpRightTwist);
         #endregion
+
+        // toggle the model of the third arm (e.g. human and robotic)
+        if (Input.GetKeyDown(KeyCode.A))
+            thirdArmModelSwitcher.IterateNextActiveObject();
+
+        // toggle mirror
+        if (Input.GetKeyDown(KeyCode.M))
+            mirrorToggler.ToggleGameObjectActive();
 
         // handle cycle input via keyboard or controller
         if ((acceptVRControllerInput && cycleThirdArmStateSteamVRAction.GetStateDown(SteamVR_Input_Sources.Any)) // controller input

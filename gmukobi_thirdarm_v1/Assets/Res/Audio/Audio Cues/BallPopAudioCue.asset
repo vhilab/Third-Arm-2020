@@ -20,3 +20,4 @@ MonoBehaviour:
   maxVolume: 1
   minPitch: 0.9
   maxPitch: 1.2
+  spatialBlend: 1

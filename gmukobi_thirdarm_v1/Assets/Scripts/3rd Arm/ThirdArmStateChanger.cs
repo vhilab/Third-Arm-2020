@@ -18,22 +18,43 @@ public class ThirdArmStateChanger : MonoBehaviour
     public GameObject armModel;
     [SerializeField] private Animator armArnimator;
 
+    public UnityEvent OnInitializeThirdArm;
     public UnityEvent OnThirdArmEnable;
-    public UnityEvent OnThirdArmDisable;
+    public UnityEvent OnThirdArmStartDisable;
 
     private MultiRotationConstraintEulerLerp rotationConstraint;
     private MeshRenderer armMeshRenderer;
 
+    private bool isCurrentlyTogglingEnabledState = false; // acts like a lock
+
+    private void Awake()
+    {
+        // zero out z-scale so third arm doesn't appear at first
+        gameObject.transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, 0.0f);
+    }
+
     private void Start()
     {
         rotationConstraint = GetComponent<MultiRotationConstraintEulerLerp>();
-        SetArmModelActive(false);
-
+        armModel.SetActive(false);
         armMeshRenderer = armModel.GetComponent<MeshRenderer>();
+        OnInitializeThirdArm.Invoke();
+
+        // use only splitHands state for Tribeca film
+        if (ThirdArmSettingsReader.Instance.settings.thirdArmBuildType == ThirdArmBuildType.TribecaFilm)
+        {
+            SetThirdArmState(ThirdArmState.splitHands);
+        }
     }
 
     public void SetThirdArmState(ThirdArmState state)
     {
+        // disable multiple state switching for Tribeca film
+        if (ThirdArmSettingsReader.Instance.settings.thirdArmBuildType == ThirdArmBuildType.TribecaFilm)
+        {
+            state = ThirdArmState.splitHands;
+        }
+
         switch (state)
         {
             case ThirdArmState.followHmd:
@@ -54,21 +75,12 @@ public class ThirdArmStateChanger : MonoBehaviour
         }
     }
 
-    private void SetArmModelActive(bool active)
-    {
-        armModel.SetActive(active);
-        if (active)
-        {
-            OnThirdArmEnable.Invoke();
-        } 
-        else
-        {
-            OnThirdArmDisable.Invoke();
-        }
-    }
-
     public void ToggleThirdArmOnOrOff()
     {
+        // Prevent third arm state toggling while state is being toggled
+        if (isCurrentlyTogglingEnabledState)
+            return;
+
         // toggles the arm between the disabled and enabled states using the below coroutines
         if (!armModel.activeSelf)
         {
@@ -82,20 +94,13 @@ public class ThirdArmStateChanger : MonoBehaviour
 
     public void GrowThirdArm()
     {
+        if (ThirdArmSettingsReader.Instance.settings.thirdArmBuildType == ThirdArmBuildType.TribecaFilm &&
+                   hmd.localEulerAngles.x < ThirdArmSettingsReader.Instance.settings.growAngleThresholdHMDEulerX)
+        {
+            // don't grow if not looking down 
+            return;
+        }
         StartCoroutine(GrowThirdArmCoroutine());
-    }
-
-    private IEnumerator GrowThirdArmCoroutine()
-    {
-        // Sets the third arm to the active state then grows it.
-
-        // don't render initially so it doesn't pop in for a frame the first time it grows
-        armMeshRenderer.enabled = false;  // TODO: find a better way to do this
-        SetArmModelActive(true);
-        armArnimator.Play("Grow Arm");
-        yield return null;
-        armMeshRenderer.enabled = true;
-        yield return null;
     }
 
     public void ShrinkThirdArm()
@@ -103,19 +108,40 @@ public class ThirdArmStateChanger : MonoBehaviour
         StartCoroutine(ShrinkThirdArmCoroutine());
     }
 
+    private IEnumerator GrowThirdArmCoroutine()
+    {
+        // Sets the third arm to the active state then grows it.
+        isCurrentlyTogglingEnabledState = true;
+
+        // don't render initially so it doesn't pop in for a frame the first time it grows
+        armMeshRenderer.enabled = false;  // TODO: find a better way to do this
+        armModel.SetActive(true);
+        OnThirdArmEnable.Invoke();
+        armArnimator.Play("Grow Arm");
+        yield return null;
+        armMeshRenderer.enabled = true;
+        yield return null;
+
+        isCurrentlyTogglingEnabledState = false;
+    }
+
     private IEnumerator ShrinkThirdArmCoroutine()
     {
         // Shrinks the third arm and sets it to the inactive state.
+        isCurrentlyTogglingEnabledState = true;
 
         //Debug.Log("Playing shrinking animation");
         armArnimator.Play("Shrink Arm");
+        OnThirdArmStartDisable.Invoke();
         // wait for animation to finish
         do
         {
             yield return null;
         } while (armArnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f);
         //Debug.Log("Done with shrinking animation");
-        SetArmModelActive(false);
+        armModel.SetActive(false);
         yield return null;
+
+        isCurrentlyTogglingEnabledState = false;
     }
 }
