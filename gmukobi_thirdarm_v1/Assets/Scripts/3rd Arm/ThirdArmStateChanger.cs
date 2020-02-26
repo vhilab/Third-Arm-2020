@@ -24,6 +24,14 @@ public class ThirdArmStateChanger : MonoBehaviour
     private MultiRotationConstraintEulerLerp rotationConstraint;
     private MeshRenderer armMeshRenderer;
 
+    private void Awake()
+    {
+
+
+        // zero out z-scale so third arm doesn't appear at first
+        gameObject.transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, 0.0f);
+    }
+
     private void Start()
     {
         rotationConstraint = GetComponent<MultiRotationConstraintEulerLerp>();
