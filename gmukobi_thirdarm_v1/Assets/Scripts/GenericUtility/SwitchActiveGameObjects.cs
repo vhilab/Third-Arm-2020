@@ -20,7 +20,7 @@ public class SwitchActiveGameObjects : MonoBehaviour
         toSwitch[activeIndex].SetActive(true);
     }
 
-    public void ToggleActiveObject()
+    public void IterateNextActiveObject()
     {
         // switches between which one of all GameObjects in toSwitch are active
         toSwitch[activeIndex].SetActive(false); // set previously active object inactive

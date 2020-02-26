@@ -13,6 +13,7 @@ public class HandleThirdArmStateInput : MonoBehaviour
     public SteamVR_Action_Boolean cycleThirdArmStateSteamVRAction;
 
     [SerializeField] private SwitchActiveGameObjects thirdArmModelSwitcher = default;
+    [SerializeField] private ToggleActive mirrorToggler = default;
 
     private void Update()
     {
@@ -28,7 +29,11 @@ public class HandleThirdArmStateInput : MonoBehaviour
 
         // toggle the model of the third arm (e.g. human and robotic)
         if (Input.GetKeyDown(KeyCode.A))
-            thirdArmModelSwitcher.ToggleActiveObject();
+            thirdArmModelSwitcher.IterateNextActiveObject();
+
+        // toggle mirror
+        if (Input.GetKeyDown(KeyCode.M))
+            mirrorToggler.ToggleGameObjectActive();
 
         // handle cycle input via keyboard or controller
         if ((acceptVRControllerInput && cycleThirdArmStateSteamVRAction.GetStateDown(SteamVR_Input_Sources.Any)) // controller input
