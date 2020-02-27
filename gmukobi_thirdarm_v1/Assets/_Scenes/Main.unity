@@ -5562,6 +5562,16 @@ PrefabInstance:
       propertyPath: OnAllButtonsPushed.m_PersistentCalls.m_Calls.Array.data[7].m_Target
       value: 
       objectReference: {fileID: 1542108888}
+    - target: {fileID: 5024956342152309175, guid: c7ef8dbc69dbf6943aeb24d574f385d4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8397262905121133039, guid: c7ef8dbc69dbf6943aeb24d574f385d4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7ef8dbc69dbf6943aeb24d574f385d4, type: 3}
 --- !u!4 &1499637130270638751
