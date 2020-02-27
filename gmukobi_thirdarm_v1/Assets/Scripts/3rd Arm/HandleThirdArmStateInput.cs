@@ -9,11 +9,16 @@ public class HandleThirdArmStateInput : MonoBehaviour
     public ThirdArmStateChanger thirdArm;
 
     [Tooltip("Disable to only accept keyboard input (e.g. for lab demo).")]
-    [SerializeField] private bool acceptVRControllerInput = false;
+    [HideInInspector] private bool acceptVRControllerInput;
     public SteamVR_Action_Boolean cycleThirdArmStateSteamVRAction;
 
     [SerializeField] private SwitchActiveGameObjects thirdArmModelSwitcher = default;
     [SerializeField] private ToggleActive mirrorToggler = default;
+
+    private void Start()
+    {
+        acceptVRControllerInput = ThirdArmSettingsReader.Instance.settings.thirdArmBuildType != ThirdArmBuildType.LabDemo;
+    }
 
     private void Update()
     {

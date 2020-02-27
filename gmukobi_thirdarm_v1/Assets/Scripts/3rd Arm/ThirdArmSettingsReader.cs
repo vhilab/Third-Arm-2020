@@ -6,14 +6,14 @@ public class ThirdArmSettingsReader : MonoBehaviour
 {
     public ThirdArmSettingsScriptableObject settings;
     
-    public static ThirdArmSettingsReader Instance;
+    public static ThirdArmSettingsReader Instance { get; private set; }
 
     private void Awake()
     {
         if (Instance)
         {
-            Destroy(this.gameObject);
-            return;
+            DestroyImmediate(this.gameObject);
+            throw new System.Exception("There shall only be one");
         }
         Instance = this;
     }

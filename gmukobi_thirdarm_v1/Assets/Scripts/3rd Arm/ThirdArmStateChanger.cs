@@ -25,7 +25,7 @@ public class ThirdArmStateChanger : MonoBehaviour
     private MultiRotationConstraintEulerLerp rotationConstraint;
     private MeshRenderer armMeshRenderer;
 
-    private bool isCurrentlyTogglingEnabledState = false; // acts like a lock
+    private bool isCurrentlyTogglingEnabledState; // acts like a lock
 
     private void Awake()
     {
@@ -79,7 +79,9 @@ public class ThirdArmStateChanger : MonoBehaviour
     {
         // Prevent third arm state toggling while state is being toggled
         if (isCurrentlyTogglingEnabledState)
+        {
             return;
+        }
 
         // toggles the arm between the disabled and enabled states using the below coroutines
         if (!armModel.activeSelf)
@@ -94,8 +96,10 @@ public class ThirdArmStateChanger : MonoBehaviour
 
     public void GrowThirdArm()
     {
-        if (ThirdArmSettingsReader.Instance.settings.thirdArmBuildType == ThirdArmBuildType.TribecaFilm &&
-                   hmd.localEulerAngles.x < ThirdArmSettingsReader.Instance.settings.growAngleThresholdHMDEulerX)
+        float hmdAngleBelowHorizon = hmd.localEulerAngles.x;
+        if (hmdAngleBelowHorizon > 180.0f) hmdAngleBelowHorizon -= 360.0f; // convert to [-180,180]
+        if ((ThirdArmSettingsReader.Instance.settings.thirdArmBuildType == ThirdArmBuildType.TribecaFilm) &&
+                   hmdAngleBelowHorizon < ThirdArmSettingsReader.Instance.settings.growAngleThresholdHMDEulerX)
         {
             // don't grow if not looking down 
             return;
@@ -116,12 +120,17 @@ public class ThirdArmStateChanger : MonoBehaviour
         // don't render initially so it doesn't pop in for a frame the first time it grows
         armMeshRenderer.enabled = false;  // TODO: find a better way to do this
         armModel.SetActive(true);
-        OnThirdArmEnable.Invoke();
         armArnimator.Play("Grow Arm");
+        OnThirdArmEnable.Invoke();
         yield return null;
         armMeshRenderer.enabled = true;
         yield return null;
 
+        // wait for animation to finish
+        do
+        {
+            yield return null;
+        } while (armArnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f);
         isCurrentlyTogglingEnabledState = false;
     }
 
