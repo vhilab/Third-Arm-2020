@@ -16,7 +16,6 @@ public class GameExiter : MonoBehaviour
         if (!instance)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
             Destroy(gameObject);
