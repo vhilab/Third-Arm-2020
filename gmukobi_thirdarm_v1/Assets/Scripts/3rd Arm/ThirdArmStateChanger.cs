@@ -96,8 +96,10 @@ public class ThirdArmStateChanger : MonoBehaviour
 
     public void GrowThirdArm()
     {
+        float hmdAngleBelowHorizon = hmd.localEulerAngles.x;
+        if (hmdAngleBelowHorizon > 180.0f) hmdAngleBelowHorizon -= 360.0f; // convert to [-180,180]
         if ((ThirdArmSettingsReader.Instance.settings.thirdArmBuildType == ThirdArmBuildType.TribecaFilm) &&
-                   hmd.localEulerAngles.x < ThirdArmSettingsReader.Instance.settings.growAngleThresholdHMDEulerX)
+                   hmdAngleBelowHorizon < ThirdArmSettingsReader.Instance.settings.growAngleThresholdHMDEulerX)
         {
             // don't grow if not looking down 
             return;
