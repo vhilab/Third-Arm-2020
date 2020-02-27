@@ -6,13 +6,13 @@ public class ThirdArmSettingsReader : MonoBehaviour
 {
     public ThirdArmSettingsScriptableObject settings;
     
-    public static ThirdArmSettingsReader Instance;
+    public static ThirdArmSettingsReader Instance { get; private set; }
 
     private void Awake()
     {
         if (Instance)
         {
-            Destroy(this.gameObject);
+            DestroyImmediate(this.gameObject);
             return;
         }
         Instance = this;
