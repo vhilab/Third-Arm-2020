@@ -8,6 +8,6 @@ public enum ThirdArmBuildType
 [CreateAssetMenu(fileName = "ThirdArmSettings", menuName = "ScriptableObjects/ThirdArmSettingsScriptableObject", order = 1)]
 public class ThirdArmSettingsScriptableObject : ScriptableObject
 {
-    public ThirdArmBuildType thirdArmBuildType { get; private set; }
+    public ThirdArmBuildType thirdArmBuildType;
     public float growAngleThresholdHMDEulerX;
 }
