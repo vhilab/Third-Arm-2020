@@ -368,7 +368,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 82}
-  m_SizeDelta: {x: 553.19, y: 119.7}
+  m_SizeDelta: {x: 553.19, y: 133.62}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &114016384
 MonoBehaviour:
@@ -394,7 +394,9 @@ MonoBehaviour:
 
     1,2,3: Switch HMD, L-Heading R-Pitch, L-Pitch R-Twist
 
-    A: Switch between arm models - M: Toggle mirror'
+    A: Switch between arm models - M: Toggle mirror
+
+    H: Recalibrate scale of avatar based on HMD height'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -463,12 +465,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 114016384}
-    characterCount: 186
+    characterCount: 237
     spriteCount: 0
-    spaceCount: 28
-    wordCount: 32
+    spaceCount: 37
+    wordCount: 41
     linkCount: 0
-    lineCount: 4
+    lineCount: 5
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
