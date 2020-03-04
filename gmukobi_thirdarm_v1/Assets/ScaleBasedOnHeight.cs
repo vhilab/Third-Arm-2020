@@ -12,7 +12,7 @@ public class ScaleBasedOnHeight : MonoBehaviour
     {
         float heightDifference = topTarget.position.y - bottomTarget.position.y;
         float targetScale = heightDifference * magicScaleMultiplier;
-
+        Debug.Log($"Rescaling avatar to {targetScale}");
         transform.localScale = new Vector3(targetScale, targetScale, targetScale);
     }
 }

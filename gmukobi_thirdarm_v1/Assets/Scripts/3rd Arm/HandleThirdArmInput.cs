@@ -15,6 +15,8 @@ public class HandleThirdArmInput : MonoBehaviour
     [SerializeField] private SwitchActiveGameObjects thirdArmModelSwitcher = default;
     [SerializeField] private ToggleActive mirrorToggler = default;
 
+    [SerializeField] private ScaleBasedOnHeight avatarHeightScaler = default;
+
     private void Start()
     {
         acceptVRControllerInput = ThirdArmSettingsReader.Instance.settings.thirdArmBuildType != ThirdArmBuildType.LabDemo;
@@ -39,6 +41,10 @@ public class HandleThirdArmInput : MonoBehaviour
         // toggle mirror
         if (Input.GetKeyDown(KeyCode.M))
             mirrorToggler.ToggleGameObjectActive();
+
+        // recalibrate avatar scale
+        if (Input.GetKeyDown(KeyCode.H))
+            avatarHeightScaler.Scale();
 
         // handle cycle input via keyboard or controller
         if ((acceptVRControllerInput && cycleThirdArmStateSteamVRAction.GetStateDown(SteamVR_Input_Sources.Any)) // controller input
