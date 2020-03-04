@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
 
-public class HandleThirdArmStateInput : MonoBehaviour
+public class HandleThirdArmInput : MonoBehaviour
 {
     [Tooltip("The third arm to control.")]
     public ThirdArmStateChanger thirdArm;
