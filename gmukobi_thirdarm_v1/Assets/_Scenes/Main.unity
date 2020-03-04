@@ -583,7 +583,7 @@ Light:
   m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0.1, y: 0, z: 1, w: 0}
+  m_BoundingSphereOverride: {x: 0.27734375, y: 0.0546875, z: 0.0546875, w: -0.0546875}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1354,7 +1354,7 @@ Light:
   m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 1.572, z: 2.375, w: -0.319}
+  m_BoundingSphereOverride: {x: 1.1886e-41, y: 6e-44, z: 0, w: 1e-45}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -2019,7 +2019,7 @@ Light:
   m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 1.6687174e-10, z: 6.32e-43, w: 9.46e-43}
+  m_BoundingSphereOverride: {x: 1.1107203e-27, y: 0, z: 0, w: 2.7e-44}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -3096,7 +3096,7 @@ PrefabInstance:
     - target: {fileID: 5656579915568628950, guid: f585380194fd9644899301fbd825b7a6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.7
+      value: 2.725
       objectReference: {fileID: 0}
     - target: {fileID: 5656579915568628950, guid: f585380194fd9644899301fbd825b7a6,
         type: 3}
@@ -4551,7 +4551,7 @@ Light:
   m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 2.466, z: 2.323, w: 1.4560001}
+  m_BoundingSphereOverride: {x: 6.08e-42, y: 1.02e-43, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
