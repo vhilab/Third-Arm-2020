@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
 
-public class HandleThirdArmStateInput : MonoBehaviour
+public class HandleThirdArmInput : MonoBehaviour
 {
     [Tooltip("The third arm to control.")]
     public ThirdArmStateChanger thirdArm;
@@ -14,6 +14,8 @@ public class HandleThirdArmStateInput : MonoBehaviour
 
     [SerializeField] private SwitchActiveGameObjects thirdArmModelSwitcher = default;
     [SerializeField] private ToggleActive mirrorToggler = default;
+
+    [SerializeField] private ScaleBasedOnHeight avatarHeightScaler = default;
 
     private void Start()
     {
@@ -39,6 +41,10 @@ public class HandleThirdArmStateInput : MonoBehaviour
         // toggle mirror
         if (Input.GetKeyDown(KeyCode.M))
             mirrorToggler.ToggleGameObjectActive();
+
+        // recalibrate avatar scale
+        if (Input.GetKeyDown(KeyCode.H))
+            avatarHeightScaler.Scale();
 
         // handle cycle input via keyboard or controller
         if ((acceptVRControllerInput && cycleThirdArmStateSteamVRAction.GetStateDown(SteamVR_Input_Sources.Any)) // controller input
