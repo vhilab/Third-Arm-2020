@@ -15,7 +15,8 @@ public class ThirdArmStateChanger : MonoBehaviour
     public Transform hmd;
     public Transform controllerLeft;
     public Transform controllerRight;
-    public GameObject armModel;
+    public GameObject[] armModels;
+    public MeshRenderer[] armMeshRenderers;
     [SerializeField] private Animator armArnimator;
 
     public UnityEvent OnInitializeThirdArm;
@@ -23,9 +24,9 @@ public class ThirdArmStateChanger : MonoBehaviour
     public UnityEvent OnThirdArmStartDisable;
 
     private MultiRotationConstraintEulerLerp rotationConstraint;
-    private MeshRenderer armMeshRenderer;
 
     private bool isCurrentlyTogglingEnabledState; // acts like a lock
+    [HideInInspector] public bool IsArmEnabled { get; private set; }
 
     private void Awake()
     {
@@ -36,9 +37,10 @@ public class ThirdArmStateChanger : MonoBehaviour
     private void Start()
     {
         rotationConstraint = GetComponent<MultiRotationConstraintEulerLerp>();
-        armModel.SetActive(false);
-        armMeshRenderer = armModel.GetComponent<MeshRenderer>();
         OnInitializeThirdArm.Invoke();
+
+        // start with arm disabled
+        SetArmModelsActive(false);
 
         // use only splitHands state for Tribeca film
         if (ThirdArmSettingsReader.Instance.settings.thirdArmBuildType == ThirdArmBuildType.TribecaFilm)
@@ -84,7 +86,7 @@ public class ThirdArmStateChanger : MonoBehaviour
         }
 
         // toggles the arm between the disabled and enabled states using the below coroutines
-        if (!armModel.activeSelf)
+        if (!IsArmEnabled)
         {
             GrowThirdArm();
         } 
@@ -118,12 +120,12 @@ public class ThirdArmStateChanger : MonoBehaviour
         isCurrentlyTogglingEnabledState = true;
 
         // don't render initially so it doesn't pop in for a frame the first time it grows
-        armMeshRenderer.enabled = false;  // TODO: find a better way to do this
-        armModel.SetActive(true);
+        SetArmMeshRenderersEnabled(false); // TODO: find a better way to do this
+        SetArmModelsActive(true);
         armArnimator.Play("Grow Arm");
         OnThirdArmEnable.Invoke();
         yield return null;
-        armMeshRenderer.enabled = true;
+        SetArmMeshRenderersEnabled(true);
         yield return null;
 
         // wait for animation to finish
@@ -148,9 +150,25 @@ public class ThirdArmStateChanger : MonoBehaviour
             yield return null;
         } while (armArnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f);
         //Debug.Log("Done with shrinking animation");
-        armModel.SetActive(false);
+        SetArmModelsActive(false);
         yield return null;
 
         isCurrentlyTogglingEnabledState = false;
+    }
+
+    private void SetArmModelsActive(bool active)
+    {
+        IsArmEnabled = active;
+        foreach (GameObject armModel in armModels)
+        {
+            armModel.SetActive(active);
+        }
+    }
+    private void SetArmMeshRenderersEnabled(bool enabled)
+    {
+        foreach (MeshRenderer renderer in armMeshRenderers)
+        {
+            renderer.enabled = enabled;
+        }
     }
 }
