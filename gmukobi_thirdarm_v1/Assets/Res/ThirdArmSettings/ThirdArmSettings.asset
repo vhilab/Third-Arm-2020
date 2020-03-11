@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d309a027a963c40449a7d88c61f75de3, type: 3}
   m_Name: ThirdArmSettings
   m_EditorClassIdentifier: 
-  thirdArmBuildType: 1
+  thirdArmBuildType: 0
   growAngleThresholdHMDEulerX: 25
