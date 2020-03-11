@@ -13,7 +13,7 @@ public class ThirdArmSettingsReader : MonoBehaviour
         if (Instance)
         {
             DestroyImmediate(this.gameObject);
-            throw new System.Exception("There shall only be one");
+            throw new System.Exception("There shall only be one 3rd arm settings instance to rule them all");
         }
         Instance = this;
     }

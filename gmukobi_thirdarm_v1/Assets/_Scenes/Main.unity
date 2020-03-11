@@ -2601,8 +2601,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4497b69a45a4d04e9350f7a4796a2d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectsToEnableForLabDemo: []
-  ObjectsToEnableForFilmProject: []
+  ObjectsToEnableForLabDemo:
+  - {fileID: 217810813}
+  - {fileID: 1105166093}
+  ObjectsToEnableForFilmProject:
+  - {fileID: 1286349018}
+  - {fileID: 846612064}
 --- !u!1 &1015655451
 GameObject:
   m_ObjectHideFlags: 0
